@@ -1,0 +1,1554 @@
+@prefix eso2: <http://www.disaster20.eu/ontologies/eso#> .
+@prefix ns2: <http://hxl.humanitarianresponse.info/ns/#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix ns: <http://www.w3.org/2006/vcard/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix TaskForce: <http://www.disaster20.eu/ontologies/eso#TaskForce/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix : <http://www.disaster20.eu/ontologies/eso.owl#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix Finance: <http://www.disaster20.eu/ontologies/eso#Finance/> .
+@base <http://www.disaster20.eu/ontologies/eso> .
+
+<http://www.disaster20.eu/ontologies/eso> rdf:type owl:Ontology ;
+                                          
+                                          owl:imports <http://cegis.usgs.gov/Ontology> ,
+                                                      <http://hxl.humanitarianresponse.info/ns/> ,
+                                                      <http://www.ll.mit.edu/2009/weather-merged.owl> ,
+                                                      <http://www.opengis.net/ont/geosparql> ,
+                                                      <http://www.ordnancesurvey.co.uk/ontology/Hydrology/v2.0/Hydrology.owl> ,
+                                                      <http://www.pms.ifi.uni-muenchen.de/OTN> ,
+                                                      <http://www.w3.org/2006/time> ,
+                                                      <http://www.w3.org/2006/vcard/ns> ,
+                                                      org: ,
+                                                      foaf: .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+ns2:title rdfs:domain foaf:Person .
+
+
+
+skos:prefLabel rdfs:range rdfs:Literal ;
+               
+               rdfs:domain org:FormalOrganization .
+
+
+
+wgs84_pos:lat rdf:type owl:AnnotationProperty ;
+              
+              rdfs:label "latitude" ;
+              
+              rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)." ;
+              
+              rdfs:domain wgs84_pos:SpatialThing .
+
+
+
+foaf:based_near rdf:type owl:AnnotationProperty .
+
+
+
+wgs84_pos:alt rdf:type owl:AnnotationProperty ;
+              
+              rdfs:label "altitude" ;
+              
+              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
+above the local reference ellipsoid).""" ;
+              
+              rdfs:domain wgs84_pos:SpatialThing .
+
+
+
+wgs84_pos:long rdf:type owl:AnnotationProperty ;
+               
+               rdfs:label "longitude" ;
+               
+               rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)." ;
+               
+               rdfs:domain wgs84_pos:SpatialThing .
+
+
+
+foaf:name rdfs:domain foaf:Person .
+
+
+
+wgs84_pos:location rdf:type owl:AnnotationProperty ;
+                   
+                   rdfs:label "location" ;
+                   
+                   rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """ ;
+                   
+                   rdfs:subPropertyOf foaf:based_near .
+
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.disaster20.eu/ontologies/eso#affect
+
+eso2:affect rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain eso2:Damage .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#hasEmployer
+
+eso2:hasEmployer rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:range org:FormalOrganization ;
+                 
+                 rdfs:domain foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#joinOperation
+
+eso2:joinOperation rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:range :Operation ;
+                   
+                   rdfs:domain foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#assignedResource
+
+:assignedResource rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:range :Resource ;
+                  
+                  rdfs:domain :ResourceAssignment .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#attackIncident
+
+:attackIncident rdf:type owl:ObjectProperty ;
+                
+                rdfs:comment "To which incident is an task targeted"^^rdfs:Literal ;
+                
+                rdfs:range :Disaster ;
+                
+                rdfs:domain :Operation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#hasAssignment
+
+:hasAssignment rdf:type owl:ObjectProperty ;
+               
+               rdfs:domain :Operation ;
+               
+               rdfs:range :ResourceAssignment .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#hasOperationChief
+
+:hasOperationChief rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:range eso2:OperationsChief ;
+                   
+                   rdfs:domain :Operation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#hasTeamLeader
+
+:hasTeamLeader rdf:type owl:ObjectProperty ;
+               
+               rdfs:range eso2:DocUnitLeader ,
+                          eso2:FacilitiesLeader ,
+                          eso2:FoodLeader ,
+                          eso2:GroundSupportLeader ,
+                          eso2:MedicalPlanningLeader ,
+                          eso2:SituationUnitLeader ,
+                          eso2:SupplyLeader ,
+                          eso2:TaskForceSectorLeader ;
+               
+               rdfs:domain :Operation ;
+               
+               rdfs:range :ResourceUnitLeader .
+
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+
+wgs84_pos:location rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "location" ;
+                   
+                   rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """ ;
+                   
+                   rdfs:range wgs84_pos:SpatialThing .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#adr
+
+ns:adr rdfs:domain foaf:Person .
+
+
+
+###  http://www.w3.org/ns/org#siteAddress
+
+org:siteAddress rdfs:range ns:Address .
+
+
+
+###  http://xmlns.com/foaf/0.1/based_near
+
+foaf:based_near rdfs:range wgs84_pos:Point ;
+                
+                rdfs:domain foaf:Person .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.disaster20.eu/ontologies/eso#URL
+
+eso2:URL rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#incidentID
+
+eso2:incidentID rdf:type owl:DatatypeProperty ;
+                
+                rdfs:domain :Disaster ;
+                
+                rdfs:range rdfs:Literal .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#magnitude
+
+eso2:magnitude rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#resourceID
+
+eso2:resourceID rdf:type owl:DatatypeProperty ;
+                
+                rdfs:domain :Resource ;
+                
+                rdfs:range rdfs:Literal .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#resourceStatus
+
+eso2:resourceStatus rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:domain :Resource ;
+                    
+                    rdfs:range rdfs:Literal .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#source
+
+eso2:source rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#startTime
+
+eso2:startTime rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#workStatus
+
+eso2:workStatus rdf:type owl:DatatypeProperty ;
+                
+                rdfs:range rdfs:Literal ;
+                
+                rdfs:domain foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#dropOffPointTime
+
+:dropOffPointTime rdf:type owl:DatatypeProperty ;
+                  
+                  rdfs:domain :ResourceAssignment ;
+                  
+                  rdfs:range rdfs:Literal .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#pickUpPointTime
+
+:pickUpPointTime rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :ResourceAssignment ;
+                 
+                 rdfs:range rdfs:Literal .
+
+
+
+###  http://xmlns.com/foaf/0.1/givenName
+
+foaf:givenName rdfs:range rdfs:Literal ;
+               
+               rdfs:domain foaf:Person .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.disaster20.eu/ontologies/eso#AdvancedLifeSupport
+
+eso2:AdvancedLifeSupport rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf :EMSOperation ;
+                         
+                         rdfs:comment "certified to perform invasive procedures" .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#AffectedAirport
+
+eso2:AffectedAirport rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf eso2:Damage .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#AffectedPort
+
+eso2:AffectedPort rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf eso2:Damage .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#AffectedProvince
+
+eso2:AffectedProvince rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf eso2:Damage .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#AgencyExecutive
+
+eso2:AgencyExecutive rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Arson
+
+eso2:Arson rdf:type owl:Class ;
+           
+           rdfs:subClassOf :ConflictDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#BasicLifeSupport
+
+eso2:BasicLifeSupport rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf :EMSOperation ;
+                      
+                      rdfs:comment "noninvasive life support" .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Biological
+
+eso2:Biological rdf:type owl:Class ;
+                
+                rdfs:subClassOf :NaturalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#BombRemovalAndDisposal
+
+eso2:BombRemovalAndDisposal rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#BranchDirector
+
+eso2:BranchDirector rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Charity
+
+eso2:Charity rdf:type owl:Class ;
+             
+             rdfs:subClassOf :NonGovernmentalOrg .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CivilIncident
+
+eso2:CivilIncident rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :ConflictDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CivilProtectionAgency
+
+eso2:CivilProtectionAgency rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf :GovernmentalAgency .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CivilProtectionOperation
+
+eso2:CivilProtectionOperation rdf:type owl:Class ;
+                              
+                              rdfs:subClassOf :Operation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Climatological
+
+eso2:Climatological rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :NaturalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CommunicationsLeader
+
+eso2:CommunicationsLeader rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CrimeFighting
+
+eso2:CrimeFighting rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CriticalFacilitiesSecurity
+
+eso2:CriticalFacilitiesSecurity rdf:type owl:Class ;
+                                
+                                rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#CrowdControl
+
+eso2:CrowdControl rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Damage
+
+eso2:Damage rdf:type owl:Class .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#DeputyIncidentCommander
+
+eso2:DeputyIncidentCommander rdf:type owl:Class ;
+                             
+                             rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#DisasterEnd
+
+eso2:DisasterEnd rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf time:Instant .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#DisasterSceneSecurity
+
+eso2:DisasterSceneSecurity rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#DisasterStart
+
+eso2:DisasterStart rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf time:Instant .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#DivisionSupervisor
+
+eso2:DivisionSupervisor rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#DocUnitLeader
+
+eso2:DocUnitLeader rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Drought
+
+eso2:Drought rdf:type owl:Class ;
+             
+             rdfs:subClassOf eso2:Climatological .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Earthquake
+
+eso2:Earthquake rdf:type owl:Class ;
+                
+                rdfs:subClassOf eso2:Geophysical .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Epidemic
+
+eso2:Epidemic rdf:type owl:Class ;
+              
+              rdfs:subClassOf eso2:Biological .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Explosion
+
+eso2:Explosion rdf:type owl:Class ;
+               
+               rdfs:subClassOf :TechnologicalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#ExtremeTemperature
+
+eso2:ExtremeTemperature rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf eso2:Climatological .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#FacilitiesLeader
+
+eso2:FacilitiesLeader rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Finance/AdminChief
+
+eso2:Finance_AdminChief rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#FireInvestigation
+
+eso2:FireInvestigation rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :FiremanOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#FireSuppression
+
+eso2:FireSuppression rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :FiremanOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#FirstResponderTraining
+
+eso2:FirstResponderTraining rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf eso2:CivilProtectionOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#FoodLeader
+
+eso2:FoodLeader rdf:type owl:Class ;
+                
+                rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Geophysical
+
+eso2:Geophysical rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :NaturalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#GroundSupportLeader
+
+eso2:GroundSupportLeader rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#HazardousChemicals
+
+eso2:HazardousChemicals rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf :TechnologicalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#HazardousMaterialsResponse
+
+eso2:HazardousMaterialsResponse rdf:type owl:Class ;
+                                
+                                rdfs:subClassOf :FiremanOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Hijacking
+
+eso2:Hijacking rdf:type owl:Class ;
+               
+               rdfs:subClassOf :ConflictDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Hospital
+
+eso2:Hospital rdf:type owl:Class ;
+              
+              rdfs:subClassOf org:FormalOrganization .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#HumanitarianOrg
+
+eso2:HumanitarianOrg rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :NonGovernmentalOrg .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Hydrological
+
+eso2:Hydrological rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :NaturalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#InfrastructureFailure
+
+eso2:InfrastructureFailure rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf :TechnologicalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Investigation
+
+eso2:Investigation rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#LiaisonOfficer
+
+eso2:LiaisonOfficer rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#LogisticsChief
+
+eso2:LogisticsChief rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#MassMovement
+
+eso2:MassMovement rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf eso2:Geophysical .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#MedicalPlanningLeader
+
+eso2:MedicalPlanningLeader rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Meteorological
+
+eso2:Meteorological rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :NaturalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Military
+
+eso2:Military rdf:type owl:Class ;
+              
+              rdfs:subClassOf :GovernmentalAgency .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#OperationEnd
+
+eso2:OperationEnd rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf time:Instant .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#OperationStart
+
+eso2:OperationStart rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf time:Instant .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#OperationsChief
+
+eso2:OperationsChief rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#PlanningChief
+
+eso2:PlanningChief rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Prevention
+
+eso2:Prevention rdf:type owl:Class ;
+                
+                rdfs:subClassOf :FirstResponderOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#PublicEducation
+
+eso2:PublicEducation rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf eso2:CivilProtectionOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#PublicInfoOfficer
+
+eso2:PublicInfoOfficer rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Rescue
+
+eso2:Rescue rdf:type owl:Class ;
+            
+            rdfs:subClassOf :FiremanOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#SafetyOfficer
+
+eso2:SafetyOfficer rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#SearchAndRescue
+
+eso2:SearchAndRescue rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#ShelterBuilding
+
+eso2:ShelterBuilding rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf eso2:CivilProtectionOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#SituationUnitLeader
+
+eso2:SituationUnitLeader rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Storm
+
+eso2:Storm rdf:type owl:Class ;
+           
+           rdfs:subClassOf eso2:Meteorological .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#SupplyLeader
+
+eso2:SupplyLeader rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#TaskForce/SectorLeader
+
+eso2:TaskForce_SectorLeader rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#TerrorismResponse
+
+eso2:TerrorismResponse rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :FiremanOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Terrorist
+
+eso2:Terrorist rdf:type owl:Class ;
+               
+               rdfs:subClassOf :ConflictDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#TrafficControl
+
+eso2:TrafficControl rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :PoliceOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#TransportationAccident
+
+eso2:TransportationAccident rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf :TechnologicalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Tsunami
+
+eso2:Tsunami rdf:type owl:Class ;
+             
+             rdfs:subClassOf eso2:Geophysical .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#VehicleExtraction
+
+eso2:VehicleExtraction rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :FiremanOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Volcano
+
+eso2:Volcano rdf:type owl:Class ;
+             
+             rdfs:subClassOf eso2:Geophysical .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#WarningIssurance
+
+eso2:WarningIssurance rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf :FirstResponderOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#WildFire
+
+eso2:WildFire rdf:type owl:Class ;
+              
+              rdfs:subClassOf eso2:Climatological .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Ambulanceman
+
+:Ambulanceman rdf:type owl:Class ;
+              
+              rdfs:subClassOf :FirstResponder .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#CheckinLocation
+
+:CheckinLocation rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf geosparql:Feature .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#CityCouncil
+
+:CityCouncil rdf:type owl:Class ;
+             
+             rdfs:subClassOf :GovernmentalAgency .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#ConflictDisaster
+
+:ConflictDisaster rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :Disaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Disaster
+
+:Disaster rdf:type owl:Class ;
+          
+          rdfs:subClassOf time:ProperInterval .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#EMSOperation
+
+:EMSOperation rdf:type owl:Class ;
+              
+              rdfs:subClassOf :FirstResponderOperation ;
+              
+              rdfs:comment "an Emergency Medical Services Operation" .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#EmergencyMedicalServices
+
+:EmergencyMedicalServices rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf :GovernmentalAgency .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Fire
+
+:Fire rdf:type owl:Class ;
+      
+      rdfs:subClassOf :TechnologicalDisaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#FireBrigade
+
+:FireBrigade rdf:type owl:Class ;
+             
+             rdfs:subClassOf :GovernmentalAgency .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Firefighter
+
+:Firefighter rdf:type owl:Class ;
+             
+             rdfs:subClassOf :FirstResponder .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#FiremanOperation
+
+:FiremanOperation rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :FirstResponderOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#FirstResponder
+
+:FirstResponder rdf:type owl:Class ;
+                
+                rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#FirstResponderOperation
+
+:FirstResponderOperation rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf :Operation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Flood
+
+:Flood rdf:type owl:Class ;
+       
+       rdfs:subClassOf eso2:Hydrological .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#GovernmentalAgency
+
+:GovernmentalAgency rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf org:FormalOrganization .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Helispot
+
+:Helispot rdf:type owl:Class ;
+          
+          rdfs:subClassOf :CheckinLocation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#IncidentBase
+
+:IncidentBase rdf:type owl:Class ;
+              
+              rdfs:subClassOf :CheckinLocation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#IncidentBoundary
+
+:IncidentBoundary rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf geosparql:Feature .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#IncidentCommandPost
+
+:IncidentCommandPost rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :CheckinLocation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#IncidentCommander
+
+:IncidentCommander rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#IncidentOrigin
+
+:IncidentOrigin rdf:type owl:Class ;
+                
+                rdfs:subClassOf geosparql:Feature .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#NaturalDisaster
+
+:NaturalDisaster rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :Disaster .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#NonGovernmentalOrg
+
+:NonGovernmentalOrg rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf org:FormalOrganization .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Operation
+
+:Operation rdf:type owl:Class ;
+           
+           rdfs:subClassOf time:ProperInterval .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Police
+
+:Police rdf:type owl:Class ;
+        
+        rdfs:subClassOf :GovernmentalAgency .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#PoliceOperation
+
+:PoliceOperation rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :FirstResponderOperation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Policeman
+
+:Policeman rdf:type owl:Class ;
+           
+           rdfs:subClassOf :FirstResponder .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#Resource
+
+:Resource rdf:type owl:Class .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#ResourceAssignment
+
+:ResourceAssignment rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf owl:Thing .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#ResourceUnitLeader
+
+:ResourceUnitLeader rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf foaf:Person .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#StagingArea
+
+:StagingArea rdf:type owl:Class ;
+             
+             rdfs:subClassOf :CheckinLocation .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso.owl#TechnologicalDisaster
+
+:TechnologicalDisaster rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :Disaster .
+
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
+
+wgs84_pos:Point rdf:type owl:Class ;
+                
+                rdfs:label "point" ;
+                
+                rdfs:subClassOf wgs84_pos:SpatialThing ;
+                
+                rdfs:comment """A point, typically described using a coordinate system relative to Earth, such as WGS84.
+  """ ,
+                             """ 
+Uniquely identified by lat/long/alt. i.e.
+
+spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
+  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
+
+sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
+  """ .
+
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+
+wgs84_pos:SpatialThing rdf:type owl:Class ;
+                       
+                       rdfs:label "SpatialThing" ;
+                       
+                       rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
+ e.g. people, places, bowling balls, as well as abstract areas like cubes.
+""" .
+
+
+
+###  http://www.w3.org/ns/org#FormalOrganization
+
+org:FormalOrganization rdf:type owl:Class .
+
+
+
+###  http://xmlns.com/foaf/0.1/Person
+
+foaf:Person rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.disaster20.eu/ontologies/eso#AARJapan
+
+eso2:AARJapan rdf:type :NonGovernmentalOrg ,
+                       owl:NamedIndividual ;
+              
+              rdfs:comment "Association for Aid and Relief, Japan" .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Artibonite
+
+eso2:Artibonite rdf:type eso2:AffectedProvince ,
+                         owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Bowen
+
+eso2:Bowen rdf:type eso2:AffectedAirport ,
+                    owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2010-000009-HTI
+
+eso2:EQ-2010-000009-HTI rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual ;
+                        
+                        eso2:startTime "12/01/2010 21:53:09" ;
+                        
+                        eso2:magnitude "7M" ;
+                        
+                        eso2:source "NEIC pt10012001" ;
+                        
+                        eso2:affect eso2:Artibonite ,
+                                    eso2:Bowen ,
+                                    eso2:Jacmel ,
+                                    eso2:Jacmel_port ,
+                                    eso2:Mais_Gate ,
+                                    eso2:Ouest ,
+                                    eso2:Port-au-Prince ,
+                                    eso2:Sud-Est .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2010-000050-CHL
+
+eso2:EQ-2010-000050-CHL rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual ;
+                        
+                        eso2:startTime "12/01/2010 21:53:09"^^rdfs:Literal ;
+                        
+                        eso2:magnitude "7M"^^rdfs:Literal ;
+                        
+                        eso2:source "NEIC pt10012001"^^rdfs:Literal ;
+                        
+                        eso2:affect eso2:Mais_Gate ,
+                                    eso2:Ouest ,
+                                    eso2:Port-au-Prince ,
+                                    eso2:Sud-Est .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2010-000066-MEX
+
+eso2:EQ-2010-000066-MEX rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2010-000099-PER
+
+eso2:EQ-2010-000099-PER rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2011-000144-GTM
+
+eso2:EQ-2011-000144-GTM rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2012-000004-MEX
+
+eso2:EQ-2012-000004-MEX rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2012-000188-GTM
+
+eso2:EQ-2012-000188-GTM rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual ;
+                        
+                        eso2:magnitude "6.3M"^^rdfs:Literal .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#EQ-2013-000021-COL
+
+eso2:EQ-2013-000021-COL rdf:type eso2:Earthquake ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Jacmel
+
+eso2:Jacmel rdf:type eso2:AffectedAirport ,
+                     owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Jacmel_port
+
+eso2:Jacmel_port rdf:type eso2:AffectedPort ,
+                          owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Mais_Gate
+
+eso2:Mais_Gate rdf:type eso2:AffectedAirport ,
+                        owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Ouest
+
+eso2:Ouest rdf:type eso2:AffectedProvince ,
+                    owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Port-au-Prince
+
+eso2:Port-au-Prince rdf:type eso2:AffectedPort ,
+                             owl:NamedIndividual .
+
+
+
+###  http://www.disaster20.eu/ontologies/eso#Sud-Est
+
+eso2:Sud-Est rdf:type eso2:AffectedProvince ,
+                      owl:NamedIndividual .
+
+
+
+
+
+#################################################################
+#
+#    Annotations
+#
+#################################################################
+
+
+wgs84_pos:lat_long rdfs:label "lat/long" ;
+                   
+                   rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." .
+
+
+
+wgs84_pos: rdfs:label "geo" ;
+           
+           <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
+           
+           rdfs:comment """
+Recent changes to this namespace:
+$Log: wgs84_pos.rdf,v $
+Revision 1.22  2009/04/20 15:00:30  timbl
+Remove the time bits which have been deal with elsewhere eg in iCal.
+
+Revision 1.21  2009/04/20 12:52:47  timbl
+try again
+
+Revision 1.20  2009/04/20 12:42:11  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.19  2009/04/20 12:36:31  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.18  2006/02/01 22:01:04  danbri
+Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
+
+Revision 1.17  2004/02/06 17:38:12  danbri
+Fixed a bad commit screwup
+
+Revision 1.15  2003/04/19 11:24:08  danbri
+Fixed the typo even more.
+
+Revision 1.14  2003/04/19 11:16:56  danbri
+fixed a typo
+
+Revision 1.13  2003/02/19 22:27:27  connolly
+relaxed domain constraints on lat/long/alt from Point to SpatialThing
+
+Revision 1.12  2003/01/12 01:41:41  danbri
+Trying local copy of XSLT doc.
+
+Revision 1.11  2003/01/12 01:20:18  danbri
+added a link to morten's xslt rdfs viewer.
+
+Revision 1.10  2003/01/11 18:56:49  danbri
+Removed datatype range from lat and long properties, since they would
+have required each occurance of the property to mention the datatype.
+
+Revision 1.9  2003/01/11 11:41:31  danbri
+Another typo; repaired rdfs:Property to rdf:Property x4
+
+Revision 1.8  2003/01/11 11:05:02  danbri
+Added an rdfs:range for each lat/long/alt property,
+http://www.w3.org/2001/XMLSchema#float
+
+Revision 1.7  2003/01/10 20:25:16  danbri
+Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
+coordinate system(s) at the same time. Feedback welcomed.
+
+Revision 1.6  2003/01/10 20:18:30  danbri
+Added CVS log comments into the RDF/XML as an rdfs:comment property of the
+vocabulary. Note that this is not common practice (but seems both harmless
+and potentially useful).
+
+
+revision 1.5
+date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
+Updated schema:
+Added a dc:date, added url for more info. Changed the rdfs:label of the
+namespace from gp to geo. Added a class Point, set as the rdfs:domain of
+each property. Added XML comment on the lat_long property suggesting that
+we might not need it (based on #rdfig commentary from implementors).
+
+revision 1.4
+date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
+Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
+#rdfig for catching this error.
+
+revision 1.3
+date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
+fixed buglet in vocab, added more wgs links
+
+revision 1.2
+date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
+Removed alt from the as-a-flat-string property, and switched from
+space separated to comma separated.
+
+revision 1.1
+date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
+basic geo vocab
+
+""" ;
+           
+           <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
+           
+           <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+
