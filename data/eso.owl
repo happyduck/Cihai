@@ -1,0 +1,1436 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY org "http://www.w3.org/ns/org#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY time "http://www.w3.org/2006/time#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY ns "http://www.w3.org/2006/vcard/ns#" >
+    <!ENTITY v1 "http://purl.org/goodrelations/v1#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY geosparql "http://www.opengis.net/ont/geosparql#" >
+    <!ENTITY eso2 "http://www.disaster20.eu/ontologies/eso#" >
+    <!ENTITY wgs84_pos "http://www.w3.org/2003/01/geo/wgs84_pos#" >
+    <!ENTITY ns2 "http://hxl.humanitarianresponse.info/ns/#" >
+    <!ENTITY owl2 "http://www.disaster20.eu/ontologies/.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY eso "http://www.disaster20.eu/ontologies/eso.owl#" >
+    <!ENTITY Finance "http://www.disaster20.eu/ontologies/eso#Finance/" >
+    <!ENTITY TaskForce "http://www.disaster20.eu/ontologies/eso#TaskForce/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.disaster20.eu/ontologies/eso.owl#"
+     xml:base="http://www.disaster20.eu/ontologies/eso"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:geosparql="http://www.opengis.net/ont/geosparql#"
+     xmlns:Finance="&eso2;Finance/"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:eso="http://www.disaster20.eu/ontologies/eso.owl#"
+     xmlns:owl2="http://www.disaster20.eu/ontologies/.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:v1="http://purl.org/goodrelations/v1#"
+     xmlns:eso2="http://www.disaster20.eu/ontologies/eso#"
+     xmlns:ns="http://www.w3.org/2006/vcard/ns#"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:ns2="http://hxl.humanitarianresponse.info/ns/#"
+     xmlns:TaskForce="&eso2;TaskForce/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://cegis.usgs.gov/Ontology"/>
+        <owl:imports rdf:resource="http://hxl.humanitarianresponse.info/ns/"/>
+        <owl:imports rdf:resource="http://www.ll.mit.edu/2009/weather-merged.owl"/>
+        <owl:imports rdf:resource="http://www.opengis.net/ont/geosparql"/>
+        <owl:imports rdf:resource="http://www.ordnancesurvey.co.uk/ontology/Hydrology/v2.0/Hydrology.owl"/>
+        <owl:imports rdf:resource="http://www.pms.ifi.uni-muenchen.de/OTN"/>
+        <owl:imports rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos"/>
+        <owl:imports rdf:resource="http://www.w3.org/2006/time"/>
+        <owl:imports rdf:resource="http://www.w3.org/2006/vcard/ns"/>
+        <owl:imports rdf:resource="http://www.w3.org/ns/org"/>
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://hxl.humanitarianresponse.info/ns/#title -->
+
+    <owl:ObjectProperty rdf:about="&ns2;title">
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#assignedResource -->
+
+    <owl:ObjectProperty rdf:about="&owl2;assignedResource">
+        <rdfs:range rdf:resource="&owl2;Resource"/>
+        <rdfs:domain rdf:resource="&owl2;ResourceAssignment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#attackIncident -->
+
+    <owl:ObjectProperty rdf:about="&owl2;attackIncident">
+        <rdfs:comment rdf:datatype="&rdfs;Literal"
+            >To which incident is an task targeted</rdfs:comment>
+        <rdfs:range rdf:resource="&owl2;Disaster"/>
+        <rdfs:domain rdf:resource="&owl2;Operation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#hasAssignment -->
+
+    <owl:ObjectProperty rdf:about="&owl2;hasAssignment">
+        <rdfs:domain rdf:resource="&owl2;Operation"/>
+        <rdfs:range rdf:resource="&owl2;ResourceAssignment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#hasOperationChief -->
+
+    <owl:ObjectProperty rdf:about="&owl2;hasOperationChief">
+        <rdfs:domain rdf:resource="&owl2;Operation"/>
+        <rdfs:range rdf:resource="#OperationsChief"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#hasTeamLeader -->
+
+    <owl:ObjectProperty rdf:about="&owl2;hasTeamLeader">
+        <rdfs:domain rdf:resource="&owl2;Operation"/>
+        <rdfs:range rdf:resource="&owl2;ResourceUnitLeader"/>
+        <rdfs:range rdf:resource="#DocUnitLeader"/>
+        <rdfs:range rdf:resource="#FacilitiesLeader"/>
+        <rdfs:range rdf:resource="#FoodLeader"/>
+        <rdfs:range rdf:resource="#GroundSupportLeader"/>
+        <rdfs:range rdf:resource="#MedicalPlanningLeader"/>
+        <rdfs:range rdf:resource="#SituationUnitLeader"/>
+        <rdfs:range rdf:resource="#SupplyLeader"/>
+        <rdfs:range rdf:resource="#TaskForce/SectorLeader"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#hasEmployer -->
+
+    <owl:ObjectProperty rdf:about="#hasEmployer">
+        <rdfs:range rdf:resource="&org;FormalOrganization"/>
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#joinOperation -->
+
+    <owl:ObjectProperty rdf:about="#joinOperation">
+        <rdfs:range rdf:resource="&owl2;Operation"/>
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#adr -->
+
+    <owl:ObjectProperty rdf:about="&ns;adr">
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#siteAddress -->
+
+    <owl:ObjectProperty rdf:about="&org;siteAddress">
+        <rdfs:range rdf:resource="&ns;Address"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/based_near -->
+
+    <owl:ObjectProperty rdf:about="&foaf;based_near">
+        <rdfs:range rdf:resource="&wgs84_pos;Point"/>
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/givenName -->
+
+    <owl:ObjectProperty rdf:about="&foaf;givenName">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#dropOffPointTime -->
+
+    <owl:DatatypeProperty rdf:about="&owl2;dropOffPointTime">
+        <rdfs:domain rdf:resource="&owl2;ResourceAssignment"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#pickUpPointTime -->
+
+    <owl:DatatypeProperty rdf:about="&owl2;pickUpPointTime">
+        <rdfs:domain rdf:resource="&owl2;ResourceAssignment"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#URL -->
+
+    <owl:DatatypeProperty rdf:about="#URL"/>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#incidentID -->
+
+    <owl:DatatypeProperty rdf:about="#incidentID">
+        <rdfs:domain rdf:resource="&owl2;Disaster"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#resourceID -->
+
+    <owl:DatatypeProperty rdf:about="#resourceID">
+        <rdfs:domain rdf:resource="&owl2;Resource"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#resourceStatus -->
+
+    <owl:DatatypeProperty rdf:about="#resourceStatus">
+        <rdfs:domain rdf:resource="&owl2;Resource"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#workStatus -->
+
+    <owl:DatatypeProperty rdf:about="#workStatus">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <owl:DatatypeProperty rdf:about="&skos;prefLabel">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+        <rdfs:domain rdf:resource="&org;FormalOrganization"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:DatatypeProperty rdf:about="&foaf;name">
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/goodrelations/v1#BusinessEntity -->
+
+    <owl:Class rdf:about="&v1;BusinessEntity"/>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Ambulanceman -->
+
+    <owl:Class rdf:about="&owl2;Ambulanceman">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#CheckinLocation -->
+
+    <owl:Class rdf:about="&owl2;CheckinLocation">
+        <rdfs:subClassOf rdf:resource="&geosparql;Feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#CityCouncil -->
+
+    <owl:Class rdf:about="&owl2;CityCouncil">
+        <rdfs:subClassOf rdf:resource="&owl2;GovernmentalAgency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#ConflictDisaster -->
+
+    <owl:Class rdf:about="&owl2;ConflictDisaster">
+        <rdfs:subClassOf rdf:resource="&owl2;Disaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Disaster -->
+
+    <owl:Class rdf:about="&owl2;Disaster">
+        <rdfs:subClassOf rdf:resource="&time;ProperInterval"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#EMSOperation -->
+
+    <owl:Class rdf:about="&owl2;EMSOperation">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponderOperation"/>
+        <rdfs:comment
+            >an Emergency Medical Services Operation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#EmergencyMedicalServices -->
+
+    <owl:Class rdf:about="&owl2;EmergencyMedicalServices">
+        <rdfs:subClassOf rdf:resource="&owl2;GovernmentalAgency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Fire -->
+
+    <owl:Class rdf:about="&owl2;Fire">
+        <rdfs:subClassOf rdf:resource="&owl2;TechnologicalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#FireBrigade -->
+
+    <owl:Class rdf:about="&owl2;FireBrigade">
+        <rdfs:subClassOf rdf:resource="&owl2;GovernmentalAgency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Firefighter -->
+
+    <owl:Class rdf:about="&owl2;Firefighter">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#FiremanOperation -->
+
+    <owl:Class rdf:about="&owl2;FiremanOperation">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponderOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#FirstResponder -->
+
+    <owl:Class rdf:about="&owl2;FirstResponder">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#FirstResponderOperation -->
+
+    <owl:Class rdf:about="&owl2;FirstResponderOperation">
+        <rdfs:subClassOf rdf:resource="&owl2;Operation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Flood -->
+
+    <owl:Class rdf:about="&owl2;Flood">
+        <rdfs:subClassOf rdf:resource="#Hydrological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#GovernmentalAgency -->
+
+    <owl:Class rdf:about="&owl2;GovernmentalAgency">
+        <rdfs:subClassOf rdf:resource="&org;FormalOrganization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Helispot -->
+
+    <owl:Class rdf:about="&owl2;Helispot">
+        <rdfs:subClassOf rdf:resource="&owl2;CheckinLocation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#IncidentBase -->
+
+    <owl:Class rdf:about="&owl2;IncidentBase">
+        <rdfs:subClassOf rdf:resource="&owl2;CheckinLocation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#IncidentBoundary -->
+
+    <owl:Class rdf:about="&owl2;IncidentBoundary">
+        <rdfs:subClassOf rdf:resource="&geosparql;Feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#IncidentCommandPost -->
+
+    <owl:Class rdf:about="&owl2;IncidentCommandPost">
+        <rdfs:subClassOf rdf:resource="&owl2;CheckinLocation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#IncidentCommander -->
+
+    <owl:Class rdf:about="&owl2;IncidentCommander">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#IncidentOrigin -->
+
+    <owl:Class rdf:about="&owl2;IncidentOrigin">
+        <rdfs:subClassOf rdf:resource="&geosparql;Feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#NaturalDisaster -->
+
+    <owl:Class rdf:about="&owl2;NaturalDisaster">
+        <rdfs:subClassOf rdf:resource="&owl2;Disaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#NonGovernmentalOrg -->
+
+    <owl:Class rdf:about="&owl2;NonGovernmentalOrg">
+        <rdfs:subClassOf rdf:resource="&org;FormalOrganization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Operation -->
+
+    <owl:Class rdf:about="&owl2;Operation">
+        <rdfs:subClassOf rdf:resource="&time;ProperInterval"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Police -->
+
+    <owl:Class rdf:about="&owl2;Police">
+        <rdfs:subClassOf rdf:resource="&owl2;GovernmentalAgency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#PoliceOperation -->
+
+    <owl:Class rdf:about="&owl2;PoliceOperation">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponderOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Policeman -->
+
+    <owl:Class rdf:about="&owl2;Policeman">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#Resource -->
+
+    <owl:Class rdf:about="&owl2;Resource"/>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#ResourceAssignment -->
+
+    <owl:Class rdf:about="&owl2;ResourceAssignment">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#ResourceUnitLeader -->
+
+    <owl:Class rdf:about="&owl2;ResourceUnitLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#StagingArea -->
+
+    <owl:Class rdf:about="&owl2;StagingArea">
+        <rdfs:subClassOf rdf:resource="&owl2;CheckinLocation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/.owl#TechnologicalDisaster -->
+
+    <owl:Class rdf:about="&owl2;TechnologicalDisaster">
+        <rdfs:subClassOf rdf:resource="&owl2;Disaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AdvancedLifeSupport -->
+
+    <owl:Class rdf:about="#AdvancedLifeSupport">
+        <rdfs:subClassOf rdf:resource="&owl2;EMSOperation"/>
+        <rdfs:comment
+            >certified to perform invasive procedures</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AgencyExecutive -->
+
+    <owl:Class rdf:about="#AgencyExecutive">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Arson -->
+
+    <owl:Class rdf:about="#Arson">
+        <rdfs:subClassOf rdf:resource="&owl2;ConflictDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#BasicLifeSupport -->
+
+    <owl:Class rdf:about="#BasicLifeSupport">
+        <rdfs:subClassOf rdf:resource="&owl2;EMSOperation"/>
+        <rdfs:comment
+            >noninvasive life support</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Biological -->
+
+    <owl:Class rdf:about="#Biological">
+        <rdfs:subClassOf rdf:resource="&owl2;NaturalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#BombRemovalAndDisposal -->
+
+    <owl:Class rdf:about="#BombRemovalAndDisposal">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#BranchDirector -->
+
+    <owl:Class rdf:about="#BranchDirector">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Charity -->
+
+    <owl:Class rdf:about="#Charity">
+        <rdfs:subClassOf rdf:resource="&owl2;NonGovernmentalOrg"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CivilIncident -->
+
+    <owl:Class rdf:about="#CivilIncident">
+        <rdfs:subClassOf rdf:resource="&owl2;ConflictDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CivilProtectionAgency -->
+
+    <owl:Class rdf:about="#CivilProtectionAgency">
+        <rdfs:subClassOf rdf:resource="&owl2;GovernmentalAgency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CivilProtectionOperation -->
+
+    <owl:Class rdf:about="#CivilProtectionOperation">
+        <rdfs:subClassOf rdf:resource="&owl2;Operation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Climatological -->
+
+    <owl:Class rdf:about="#Climatological">
+        <rdfs:subClassOf rdf:resource="&owl2;NaturalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CommunicationsLeader -->
+
+    <owl:Class rdf:about="#CommunicationsLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CrimeFighting -->
+
+    <owl:Class rdf:about="#CrimeFighting">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CriticalFacilitiesSecurity -->
+
+    <owl:Class rdf:about="#CriticalFacilitiesSecurity">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CrowdControl -->
+
+    <owl:Class rdf:about="#CrowdControl">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#DeputyIncidentCommander -->
+
+    <owl:Class rdf:about="#DeputyIncidentCommander">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#DisasterEnd -->
+
+    <owl:Class rdf:about="#DisasterEnd">
+        <rdfs:subClassOf rdf:resource="&time;Instant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#DisasterSceneSecurity -->
+
+    <owl:Class rdf:about="#DisasterSceneSecurity">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#DisasterStart -->
+
+    <owl:Class rdf:about="#DisasterStart">
+        <rdfs:subClassOf rdf:resource="&time;Instant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#DivisionSupervisor -->
+
+    <owl:Class rdf:about="#DivisionSupervisor">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#DocUnitLeader -->
+
+    <owl:Class rdf:about="#DocUnitLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Drought -->
+
+    <owl:Class rdf:about="#Drought">
+        <rdfs:subClassOf rdf:resource="#Climatological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Earthquake -->
+
+    <owl:Class rdf:about="#Earthquake">
+        <rdfs:subClassOf rdf:resource="#Geophysical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Epidemic -->
+
+    <owl:Class rdf:about="#Epidemic">
+        <rdfs:subClassOf rdf:resource="#Biological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Explosion -->
+
+    <owl:Class rdf:about="#Explosion">
+        <rdfs:subClassOf rdf:resource="&owl2;TechnologicalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ExtremeTemperature -->
+
+    <owl:Class rdf:about="#ExtremeTemperature">
+        <rdfs:subClassOf rdf:resource="#Climatological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#FacilitiesLeader -->
+
+    <owl:Class rdf:about="#FacilitiesLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Finance/AdminChief -->
+
+    <owl:Class rdf:about="#Finance/AdminChief">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#FireInvestigation -->
+
+    <owl:Class rdf:about="#FireInvestigation">
+        <rdfs:subClassOf rdf:resource="&owl2;FiremanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#FireSuppression -->
+
+    <owl:Class rdf:about="#FireSuppression">
+        <rdfs:subClassOf rdf:resource="&owl2;FiremanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#FirstResponderTraining -->
+
+    <owl:Class rdf:about="#FirstResponderTraining">
+        <rdfs:subClassOf rdf:resource="#CivilProtectionOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#FoodLeader -->
+
+    <owl:Class rdf:about="#FoodLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Geophysical -->
+
+    <owl:Class rdf:about="#Geophysical">
+        <rdfs:subClassOf rdf:resource="&owl2;NaturalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#GroundSupportLeader -->
+
+    <owl:Class rdf:about="#GroundSupportLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#HazardousChemicals -->
+
+    <owl:Class rdf:about="#HazardousChemicals">
+        <rdfs:subClassOf rdf:resource="&owl2;TechnologicalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#HazardousMaterialsResponse -->
+
+    <owl:Class rdf:about="#HazardousMaterialsResponse">
+        <rdfs:subClassOf rdf:resource="&owl2;FiremanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Hijacking -->
+
+    <owl:Class rdf:about="#Hijacking">
+        <rdfs:subClassOf rdf:resource="&owl2;ConflictDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Hospital -->
+
+    <owl:Class rdf:about="#Hospital">
+        <rdfs:subClassOf rdf:resource="&org;FormalOrganization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#HumanitarianOrg -->
+
+    <owl:Class rdf:about="#HumanitarianOrg">
+        <rdfs:subClassOf rdf:resource="&owl2;NonGovernmentalOrg"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Hydrological -->
+
+    <owl:Class rdf:about="#Hydrological">
+        <rdfs:subClassOf rdf:resource="&owl2;NaturalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#InfrastructureFailure -->
+
+    <owl:Class rdf:about="#InfrastructureFailure">
+        <rdfs:subClassOf rdf:resource="&owl2;TechnologicalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Investigation -->
+
+    <owl:Class rdf:about="#Investigation">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#LiaisonOfficer -->
+
+    <owl:Class rdf:about="#LiaisonOfficer">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#LogisticsChief -->
+
+    <owl:Class rdf:about="#LogisticsChief">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#MassMovement -->
+
+    <owl:Class rdf:about="#MassMovement">
+        <rdfs:subClassOf rdf:resource="#Geophysical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#MedicalPlanningLeader -->
+
+    <owl:Class rdf:about="#MedicalPlanningLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Meteorological -->
+
+    <owl:Class rdf:about="#Meteorological">
+        <rdfs:subClassOf rdf:resource="&owl2;NaturalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Military -->
+
+    <owl:Class rdf:about="#Military">
+        <rdfs:subClassOf rdf:resource="&owl2;GovernmentalAgency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#OperationEnd -->
+
+    <owl:Class rdf:about="#OperationEnd">
+        <rdfs:subClassOf rdf:resource="&time;Instant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#OperationStart -->
+
+    <owl:Class rdf:about="#OperationStart">
+        <rdfs:subClassOf rdf:resource="&time;Instant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#OperationsChief -->
+
+    <owl:Class rdf:about="#OperationsChief">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#PlanningChief -->
+
+    <owl:Class rdf:about="#PlanningChief">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Prevention -->
+
+    <owl:Class rdf:about="#Prevention">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponderOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#PublicEducation -->
+
+    <owl:Class rdf:about="#PublicEducation">
+        <rdfs:subClassOf rdf:resource="#CivilProtectionOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#PublicInfoOfficer -->
+
+    <owl:Class rdf:about="#PublicInfoOfficer">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Rescue -->
+
+    <owl:Class rdf:about="#Rescue">
+        <rdfs:subClassOf rdf:resource="&owl2;FiremanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#SafetyOfficer -->
+
+    <owl:Class rdf:about="#SafetyOfficer">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#SearchAndRescue -->
+
+    <owl:Class rdf:about="#SearchAndRescue">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ShelterBuilding -->
+
+    <owl:Class rdf:about="#ShelterBuilding">
+        <rdfs:subClassOf rdf:resource="#CivilProtectionOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#SituationUnitLeader -->
+
+    <owl:Class rdf:about="#SituationUnitLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Storm -->
+
+    <owl:Class rdf:about="#Storm">
+        <rdfs:subClassOf rdf:resource="#Meteorological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#SupplyLeader -->
+
+    <owl:Class rdf:about="#SupplyLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#TaskForce/SectorLeader -->
+
+    <owl:Class rdf:about="#TaskForce/SectorLeader">
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#TerrorismResponse -->
+
+    <owl:Class rdf:about="#TerrorismResponse">
+        <rdfs:subClassOf rdf:resource="&owl2;FiremanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Terrorist -->
+
+    <owl:Class rdf:about="#Terrorist">
+        <rdfs:subClassOf rdf:resource="&owl2;ConflictDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#TrafficControl -->
+
+    <owl:Class rdf:about="#TrafficControl">
+        <rdfs:subClassOf rdf:resource="&owl2;PoliceOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#TransportationAccident -->
+
+    <owl:Class rdf:about="#TransportationAccident">
+        <rdfs:subClassOf rdf:resource="&owl2;TechnologicalDisaster"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Tsunami -->
+
+    <owl:Class rdf:about="#Tsunami">
+        <rdfs:subClassOf rdf:resource="#Geophysical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#VehicleExtraction -->
+
+    <owl:Class rdf:about="#VehicleExtraction">
+        <rdfs:subClassOf rdf:resource="&owl2;FiremanOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#Volcano -->
+
+    <owl:Class rdf:about="#Volcano">
+        <rdfs:subClassOf rdf:resource="#Geophysical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#WarningIssurance -->
+
+    <owl:Class rdf:about="#WarningIssurance">
+        <rdfs:subClassOf rdf:resource="&owl2;FirstResponderOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#WildFire -->
+
+    <owl:Class rdf:about="#WildFire">
+        <rdfs:subClassOf rdf:resource="#Climatological"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.opengis.net/ont/geosparql#Feature -->
+
+    <owl:Class rdf:about="&geosparql;Feature"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Literal -->
+
+    <owl:Class rdf:about="&rdfs;Literal"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#Point -->
+
+    <owl:Class rdf:about="&wgs84_pos;Point"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Instant -->
+
+    <owl:Class rdf:about="&time;Instant"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#ProperInterval -->
+
+    <owl:Class rdf:about="&time;ProperInterval"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#Address -->
+
+    <owl:Class rdf:about="&ns;Address"/>
+    
+
+
+    <!-- http://www.w3.org/ns/org#FormalOrganization -->
+
+    <owl:Class rdf:about="&org;FormalOrganization"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="&foaf;Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AAR -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#AAR">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <eso2:URL>aar_gs.com</eso2:URL>
+        <rdfs:comment
+            >Association for Aid and Relief, Japan</rdfs:comment>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ACDIVOCA -->
+
+    <owl:Thing rdf:about="#ACDIVOCA">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <eso2:URL
+            >acdivoca-haiti.org</eso2:URL>
+        <rdfs:comment
+            >Agricultural Cooperative Development International and Volunteers in Overseas Cooperative Assistance</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ACTED -->
+
+    <owl:Thing rdf:about="#ACTED">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <rdfs:comment
+            >Agence d&#39;aide a la Cooperation Technique et Developpement</rdfs:comment>
+        <eso2:URL>acted.org</eso2:URL>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ACTIONAID -->
+
+    <owl:Thing rdf:about="#ACTIONAID">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <rdfs:comment>Action et Aide</rdfs:comment>
+        <eso2:URL>actionaid.org</eso2:URL>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ADFUSA -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#ADFUSA">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <eso2:URL>adfusa.org</eso2:URL>
+        <rdfs:comment
+            >America&#39;s Development Foundation</rdfs:comment>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ADH -->
+
+    <owl:Thing rdf:about="#ADH">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <eso2:URL
+            >aktion-deutschland-hilft.de</eso2:URL>
+        <rdfs:comment
+            >Aktion Deutschland Hilft</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ADRACA -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#ADRACA">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <eso2:URL>www.adra.ca</eso2:URL>
+        <rdfs:comment
+            >Adventist Development and Relief Agency</rdfs:comment>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AIDG -->
+
+    <owl:Thing rdf:about="#AIDG">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <eso2:URL>www.aidg.org</eso2:URL>
+        <rdfs:comment
+            >Appropriate Infrastructure Development Group</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AIRLINEAMB -->
+
+    <owl:Thing rdf:about="#AIRLINEAMB">
+        <rdf:type rdf:resource="&owl2;GovernmentalAgency"/>
+        <rdfs:comment
+            >Airline Ambassadors</rdfs:comment>
+        <eso2:URL>airlineamb.org</eso2:URL>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ALLIEDRI -->
+
+    <owl:Thing rdf:about="#ALLIEDRI">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <rdfs:comment
+            >Allied Recovery International</rdfs:comment>
+        <eso2:URL>alliedri.org</eso2:URL>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AMERICARES -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#AMERICARES">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <eso2:URL>americares.org</eso2:URL>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AMERICASRELIEF -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#AMERICASRELIEF">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <rdfs:comment
+            >Americas Relief Team</rdfs:comment>
+        <eso2:URL
+            >http://americasrelief.org/</eso2:URL>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AMIFRANCE -->
+
+    <owl:Thing rdf:about="#AMIFRANCE">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <rdfs:comment
+            >Aide M&#233;dicale Internationale France</rdfs:comment>
+        <eso2:URL>amifrance.org </eso2:URL>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AMINTERNATIONAL -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#AMINTERNATIONAL">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <eso2:URL
+            >aminternational.org</eso2:URL>
+        <rdfs:comment
+            >Antioch Ministries International </rdfs:comment>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#AMURT -->
+
+    <owl:Thing rdf:about="#AMURT">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <eso2:URL>amurt.net </eso2:URL>
+        <rdfs:comment
+            >Ananda Marga Universal Relief Team</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ARCHG -->
+
+    <owl:Thing rdf:about="#ARCHG">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+        <eso2:URL>archg.org</eso2:URL>
+        <rdfs:comment
+            >American Refugee Committee International</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ARCHIURGENT -->
+
+    <owl:Thing rdf:about="#ARCHIURGENT">
+        <eso2:URL
+            >archi-urgent.com </eso2:URL>
+        <rdfs:comment
+            >Architecte de l&#39;Urgence</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ARCHUM -->
+
+    <owl2:NonGovernmentalOrg rdf:about="#ARCHUM">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <eso2:URL
+            >architectureforhumanity.org </eso2:URL>
+        <rdfs:comment
+            >Architecture for Humanity </rdfs:comment>
+    </owl2:NonGovernmentalOrg>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#ARGISGROUP -->
+
+    <owl:Thing rdf:about="#ARGISGROUP">
+        <rdf:type rdf:resource="&v1;BusinessEntity"/>
+        <eso2:URL>argisgroup.eu </eso2:URL>
+        <rdfs:comment
+            >Argus Security Projects Ltd. </rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#CIDA -->
+
+    <owl:Thing rdf:about="#CIDA">
+        <rdf:type rdf:resource="&owl2;GovernmentalAgency"/>
+        <rdfs:comment
+            >Canadian International Development Agency</rdfs:comment>
+        <eso2:URL>acdi-cida.gc.ca</eso2:URL>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.disaster20.eu/ontologies/eso#org1 -->
+
+    <owl:Thing rdf:about="#org1">
+        <rdf:type rdf:resource="&owl2;NonGovernmentalOrg"/>
+    </owl:Thing>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
